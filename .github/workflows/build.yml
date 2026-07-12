@@ -8,11 +8,8 @@ on:
   workflow_dispatch:  # 支持手动触发
 
 env:
-  REPO_URL: https://github.com/hzyitc/openwrt-redmi-ax3000
-  REPO_BRANCH: master
   TARGET: ipq50xx
   SUBTARGET: arm
-  DEVICE: redmi_ax3000
 
 jobs:
   build:
@@ -29,7 +26,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y build-essential clang flex g++ gawk gcc-multilib gettext \
-            git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev file
+            git libncurses-dev libssl-dev python3 rsync unzip zlib1g-dev file
 
       - name: 更新并安装 feeds
         shell: bash
