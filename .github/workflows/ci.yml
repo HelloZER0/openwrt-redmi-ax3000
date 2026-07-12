@@ -2,11 +2,10 @@ name: CI
 
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Free disk space
         run: |
@@ -16,7 +15,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential clang flex g++ gawk gcc-multilib gettext \
-            git libncurses5-dev libssl-dev python3-distutils rsync unzip zlib1g-dev
+            git libncurses-dev libssl-dev python3 rsync unzip zlib1g-dev
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -86,7 +85,7 @@ jobs:
 
   gh-pages:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -137,7 +136,7 @@ jobs:
 
   release:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
